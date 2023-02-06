@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Adisd",
+      "address": "Solo"
+    },
+    {
+      "id": 2,
+      "name": "Karen",
+      "address": "Bogor"
+    },
+    {
+      "id": 3,
+      "name": "Michael",
+      "address": "Surabaya"
+    },
+    {
+      "id": 671,
+      "name": "Ex cupidatat tenetur",
+      "address": "Reiciendis et ea est"
+    },
+    {
+      "id": 231,
+      "name": "Fugiat explicabo Pa",
+      "address": "Praesentium ipsum u"
+    }
+  ]
+}
