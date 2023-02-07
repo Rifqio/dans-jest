@@ -1,4 +1,5 @@
 const instance = require("../module/httpModule");
+const { formUser } = require("../schema/FormValidation");
 
 // GET
 exports.getUser = async (req, res) => {
@@ -28,7 +29,12 @@ exports.addUser = async (req, res) => {
       name: req.body.name,
       address: req.body.address,
     };
-    const response = await instance.post("/users", data);
+    const { error, value } = formUser.validate(data);
+    if (error) {
+      console.log(error);
+      return res.status(400).send({error: error.message});
+    }
+    const response = await instance.post("/users", value);
     res.json(response.data);
   } catch (error) {
     console.log(error);
@@ -44,8 +50,13 @@ exports.updateUser = async (req, res) => {
       name: req.body.name,
       address: req.body.address,
     };
-    const response = await instance.patch(`/users/${id}`, data)
-    res.json(response.data)
+    const { error, value } = formUser.validate(data);
+    if (error) {
+      console.log(error);
+      return res.status(400).send({error: error.message});
+    }
+    const response = await instance.patch(`/users/${id}`, value);
+    res.json(response.data);
   } catch (error) {
     console.log(error);
   }
@@ -55,9 +66,9 @@ exports.updateUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   const { id } = req.params;
   try {
-    await instance.delete(`/users/${id}`)
-    res.json({msg: `User with id ${id} has been deleted`})
+    await instance.delete(`/users/${id}`);
+    res.json({ msg: `User with id ${id} has been deleted` });
   } catch (error) {
     console.log(error);
   }
-}
+};
